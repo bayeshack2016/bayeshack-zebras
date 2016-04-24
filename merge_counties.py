@@ -15,8 +15,11 @@ with open('data/us-counties.json') as geojson_file:
 with open('data/counties_json.csv') as data_file:
     for line in data_file:
         data = json.loads(line)
-        properties = [combine_dicts(values['properties'],data) for values in geojson['features'] if values['properties']['STATE'] == data['state_id'] and values['properties']['COUNTY'] == data['county_id'] ]
-        pprint(properties)
+
+        for values in geojson['features']:
+            if values['properties']['STATE'] == data['state_id'] and values['properties']['COUNTY'] == data['county_id']:
+                properties= combine_dicts(values['properties'],data)
+                pprint(properties)
 
 # Merge back counties data into geojson
 
