@@ -1,5 +1,5 @@
-var overdoses = L.geoJson(countiesData, {
-  style: overdosesStyle,
+var od_per_capita = L.geoJson(countiesData, {
+  style: od_per_capitaStyle,
   onEachFeature: onEachFeature
 });
 
@@ -14,7 +14,7 @@ var overdoses = L.geoJson(countiesData, {
   var map = L.map('map', {
       center: [37.8, -96],
       zoom: 4,
-      layers: [baseLayer, overdoses]
+      layers: [baseLayer, od_per_capita]
   });
 
   /* Useful if we want to extand layers
@@ -23,7 +23,7 @@ var overdoses = L.geoJson(countiesData, {
   };
 
   var overlayMaps = {
-      "Overdoses": overdoses
+      "od_per_capita": od_per_capita
   };
 
   L.control.layers(baseMaps, overlayMaps).addTo(map);
@@ -39,7 +39,7 @@ var overdoses = L.geoJson(countiesData, {
   };
 
   info.update = function (props) {
-    this._div.innerHTML = '<h4>Opioid OD count for year 2014</h4>' + (props ?
+    this._div.innerHTML = '<h4>Opioid OD / RX</h4>' + (props ?
       '<b>' + props.NAME + '</b><br />'
       /* + props.od_count + ' opioid OD<br />'
       + props.opioid_claim_count + ' opioid claim<br />'
@@ -66,7 +66,7 @@ var overdoses = L.geoJson(countiesData, {
                       '#FFEDA0';
   }
 
-  function overdosesStyle(feature) {
+  function od_per_capitaStyle(feature) {
     return {
       weight: 0,
       opacity: 1,
@@ -95,7 +95,7 @@ var overdoses = L.geoJson(countiesData, {
   }
 
   function resetHighlight(e) {
-    overdoses.resetStyle(e.target);
+    od_per_capita.resetStyle(e.target);
     info.update();
   }
 
