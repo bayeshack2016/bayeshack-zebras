@@ -1,2 +1,2 @@
 # bayeshack-zebras
-Zebras HHS Opioïd project
+Zebras HSS Opioïd project
