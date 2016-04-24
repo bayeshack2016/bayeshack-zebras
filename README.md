@@ -1,4 +1,4 @@
-# HSS Opioïd data visualtion project
+# HSS Opioid data visualtion project
 
 # Description
 
