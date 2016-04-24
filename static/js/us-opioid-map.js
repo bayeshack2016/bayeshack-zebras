@@ -41,10 +41,13 @@ var overdoses = L.geoJson(countiesData, {
   info.update = function (props) {
     this._div.innerHTML = '<h4>Opioid OD count for year 2014</h4>' + (props ?
       '<b>' + props.NAME + '</b><br />'
-      + props.od_count + ' opioid OD<br />'
+      /* + props.od_count + ' opioid OD<br />'
       + props.opioid_claim_count + ' opioid claim<br />'
-      // + props.od_per_prescription + ' OD per prescription<br />'
-      + props.county_population + ' population<br />'
+      + props.od_per_prescription + ' OD per prescription<br />'
+      + props.county_population + ' population<br />'*/
+      + (props.od_per_capita * 100000).toFixed() + ' OD / 100 K capita<br />'
+      + (props.rx_per_capita * 10000).toFixed() + ' RX / 10 K capita<br />'
+      + (props.od_per_prescription * 100000).toFixed() + ' OD / 100 K prescription<br />'
       : 'Hover over a county');
   };
 
@@ -70,7 +73,7 @@ var overdoses = L.geoJson(countiesData, {
       color: 'white',
       dashArray: '3',
       fillOpacity: 0.5,
-      fillColor: getColor(feature.properties.od_count)
+      fillColor: getColor(feature.properties.od_per_prescription*100000)
     };
   }
 
