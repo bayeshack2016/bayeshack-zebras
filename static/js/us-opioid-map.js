@@ -3,6 +3,16 @@ var od_per_capita = L.geoJson(countiesData, {
   onEachFeature: onEachFeature
 });
 
+var rx_per_capita = L.geoJson(countiesData, {
+  style: rx_per_capitaStyle,
+  onEachFeature: onEachFeature
+});
+
+var od_per_prescription = L.geoJson(countiesData, {
+  style: od_per_prescriptionStyle,
+  onEachFeature: onEachFeature
+});
+
   var baseLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -14,20 +24,20 @@ var od_per_capita = L.geoJson(countiesData, {
   var map = L.map('map', {
       center: [37.8, -96],
       zoom: 4,
-      layers: [baseLayer, od_per_capita]
+      layers: [baseLayer, od_per_prescription]
   });
 
-  /* Useful if we want to extand layers
   var baseMaps = {
       "United States Counties": baseLayer
   };
 
   var overlayMaps = {
-      "od_per_capita": od_per_capita
+      "OD / capita": od_per_capita,
+      "RX / capita": rx_per_capita,
+      "OD / prescription": od_per_prescription
   };
 
   L.control.layers(baseMaps, overlayMaps).addTo(map);
-  */
 
   // control that shows state info on hover
   var info = L.control();
@@ -67,6 +77,28 @@ var od_per_capita = L.geoJson(countiesData, {
   }
 
   function od_per_capitaStyle(feature) {
+    return {
+      weight: 0,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.5,
+      fillColor: getColor(feature.properties.od_per_capita*100000)
+    };
+  }
+
+  function rx_per_capitaStyle(feature) {
+    return {
+      weight: 0,
+      opacity: 1,
+      color: 'white',
+      dashArray: '3',
+      fillOpacity: 0.5,
+      fillColor: getColor(feature.properties.rx_per_capita*10000)
+    };
+  }
+
+  function od_per_prescriptionStyle(feature) {
     return {
       weight: 0,
       opacity: 1,
