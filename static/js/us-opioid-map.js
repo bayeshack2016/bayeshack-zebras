@@ -1,8 +1,3 @@
-var prescriptions = L.geoJson(countiesData, {
-  style: prescriptionStyle,
-  onEachFeature: onEachFeature
-});
-
 var overdoses = L.geoJson(countiesData, {
   style: overdosesStyle,
   onEachFeature: onEachFeature
@@ -19,19 +14,20 @@ var overdoses = L.geoJson(countiesData, {
   var map = L.map('map', {
       center: [37.8, -96],
       zoom: 4,
-      layers: [baseLayer, prescriptions]
+      layers: [baseLayer, overdoses]
   });
 
+  /* Useful if we want to extand layers
   var baseMaps = {
-      "United States": baseLayer
+      "United States Counties": baseLayer
   };
 
   var overlayMaps = {
-      "Prescriptions": prescriptions,
       "Overdoses": overdoses
   };
 
   L.control.layers(baseMaps, overlayMaps).addTo(map);
+  */
 
   // control that shows state info on hover
   var info = L.control();
@@ -43,12 +39,10 @@ var overdoses = L.geoJson(countiesData, {
   };
 
   info.update = function (props) {
-    this._div.innerHTML = '<h4>Results for year 2014</h4>' + (props ?
+    this._div.innerHTML = '<h4>Opioid OD count for year 2014</h4>' + (props ?
       '<b>' + props.NAME + '</b><br />'
-      + props.prescriptions + ' prescriptions<br />'
-      + props.overdoses + ' overdoses<br />'
-      + props.ratio + ' OD / prescription'
-      : 'Hover over a state');
+      + props.od_count + ' OD count<br />'
+      : 'Hover over a county');
   };
 
   info.addTo(map);
@@ -56,25 +50,14 @@ var overdoses = L.geoJson(countiesData, {
 
   // get color depending on population density value
   function getColor(d) {
-    return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
+    return d > 500 ? '#800026' :
+           d > 250  ? '#BD0026' :
+           d > 100  ? '#E31A1C' :
+           d > 50  ? '#FC4E2A' :
+           d > 25   ? '#FD8D3C' :
+           d > 10   ? '#FEB24C' :
+           d > 5   ? '#FED976' :
                       '#FFEDA0';
-  }
-
-  function prescriptionStyle(feature) {
-    return {
-      weight: 0,
-      opacity: 1,
-      color: 'white',
-      dashArray: '3',
-      fillOpacity: 0.5,
-      fillColor: getColor(feature.properties.prescriptions)
-    };
   }
 
   function overdosesStyle(feature) {
@@ -84,7 +67,7 @@ var overdoses = L.geoJson(countiesData, {
       color: 'white',
       dashArray: '3',
       fillOpacity: 0.5,
-      fillColor: getColor(feature.properties.overdoses)
+      fillColor: getColor(feature.properties.od_count)
     };
   }
 
@@ -106,7 +89,6 @@ var overdoses = L.geoJson(countiesData, {
   }
 
   function resetHighlight(e) {
-    prescriptions.resetStyle(e.target);
     overdoses.resetStyle(e.target);
     info.update();
   }
@@ -131,7 +113,7 @@ var overdoses = L.geoJson(countiesData, {
   legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-      grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+      grades = [0, 5, 10, 25, 50, 100, 250, 500],
       labels = [],
       from, to;
 
