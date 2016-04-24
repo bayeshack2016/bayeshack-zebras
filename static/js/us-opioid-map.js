@@ -43,7 +43,7 @@ var overdoses = L.geoJson(countiesData, {
       '<b>' + props.NAME + '</b><br />'
       + props.od_count + ' opioid OD<br />'
       + props.opioid_claim_count + ' opioid claim<br />'
-      + props.od_per_prescription + ' OD per prescription<br />'
+      // + props.od_per_prescription + ' OD per prescription<br />'
       : 'Hover over a county');
   };
 
