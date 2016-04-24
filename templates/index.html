@@ -23,17 +23,18 @@ $.ajax({
     <!-- Leaflet map styles -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   	<link rel="stylesheet" href="static/css/map.css" />
+    <link rel="stylesheet" href="static/css/zebras.css"
 </head>
-<h1>Zebra Opioid Research</h1>
+<center><h1>Zebras Opioid Visualization</h1></center>
 
-<div id="map"></div>
+<center><div id="map"></div></center>
 
-<table id="ajax-table" class="table table-bordered">
+<table id="ajax-table" class="table table-bordered table-hover padded">
   <thead>
-    <th>state</th>
-    <th>county</th>
-    <th>fips</th>
-    <th>od_count</th>
+    <th>State</th>
+    <th>County</th>
+    <th>FIPS</th>
+    <th>OD_count</th>
     <th>opioid_claim_count</th>
     <th>county_population</th>
     <th>OD_per_prescription</th>
