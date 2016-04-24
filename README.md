@@ -1,5 +1,9 @@
 # HSS Opioïd data visualtion project
 
+# Description
+
+Small project made during #BayesHack 2016 hackathon to show and analyse US Opiod OD causes
+
 # Setup
 pip install -r requirements
 
