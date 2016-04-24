@@ -3,7 +3,7 @@
 ### Description
 The United States is currently facing a large scale epidemic of abuse and mortality from the abuse of opioids. These include prescription drugs, such as oxycodone, hydrocodone, and morphine as well as heroin, an illicit street drug. (More info from [HHS](https://aspe.hhs.gov/basic-report/opioid-abuse-us-and-hhs-actions-address-opioid-drug-related-overdoses-and-deaths))
 
-This project was made during [BayesHack 2016 hackathon](http://bayeshack.org) to enable the public to explore and better understand the current opioid abuse epidemic.
+This project was made during the [BayesHack 2016 hackathon](http://bayeshack.org) to enable the public to explore and better understand the current opioid abuse epidemic.
 
 #### The epidemic
 ![The surge in opioid related deaths](https://upload.wikimedia.org/wikipedia/commons/c/c1/US_timeline._Prescription_opioid_pain_reliever_deaths.jpg)
