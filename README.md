@@ -1,2 +1,5 @@
 # bayeshack-zebras
-Zebras HSS Opioïd project
+HSS Opioïd data visualtion project
+
+# Setup
+pip install -r requirements
