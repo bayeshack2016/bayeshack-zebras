@@ -109,7 +109,7 @@ var overdoses = L.geoJson(countiesData, {
 
   map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
   map.attributionControl.addAttribution('OD data &copy; <a href="http://wonder.cdc.gov/">CDC Wonder</a>');
-  map.attributionControl.addAttribution('Prescription data &copy; <a href="http://wonder.cdc.gov/">CDC Wonder</a>');
+  //map.attributionControl.addAttribution('Prescription data &copy; <a href="http://wonder.cdc.gov/">CDC Wonder</a>');
 
 
   var legend = L.control({position: 'bottomright'});
